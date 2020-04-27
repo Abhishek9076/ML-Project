@@ -1,0 +1,115 @@
+import pandas
+from pandas.plotting import scatter_matrix
+from matplotlib import pyplot
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import accuracy_score
+from sklearn.linear.model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbor import KNeighborsClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.naive_bayes import GaussiaNB
+from sklearn.svm import SVC
+from sklearn import_selection
+from sklearn.enesemble import VotingClassifier
+
+# loading the data
+url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.csv"
+names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'class']
+dtaset = read_csv(url, names=names)
+
+# dimensions of the dataset
+print(dataset.shape)
+
+# take a peek at the data
+print(dataset.head(20))
+
+# statistical summary
+print(dataset.describe())
+
+# class distribution
+print(dataset.groupby('class').size())
+
+# univariate plots - box and whisker plots
+datset.plot(kind='box', subplots=True, layout=(2,20, sharex=False, sharey=False)
+pyplot.show()
+
+# histogram of variable
+dataset.hist()
+pyplot.show()
+
+# multivariate plots
+scatter_matrix(dataset)
+pyplot.show()
+
+# creating a validate dataset
+#splitting dataset
+array = dataset.values
+x = array[:, 0:4]
+y = array[:, 4]
+x_train, x_validation, y_train, y_validtion = train_test_split(x, y, test_size=0.2, random_state=1)] 
+
+# Logistic Regression
+# Linear Discriminant Analysis
+# K-Nearest neighbors
+# Classification and Regression Trees
+# Gaussian Naive Bayes
+# Support Vector Machines
+
+# building models
+model = []
+models.append(('LR', LogisticRegression(solver='')))
+models.append(('LDA', LinearDiscriminantAnalysis()))
+models.append(('KNN', KNeighborsClassifier()))
+models.append(('NB', GaussianNB()))
+models.append(('SVM', SVC(gamma='auto')))
+
+# evaluate the created models
+results = []
+names = []
+for name, model in models:
+    kfold = StratifiedKFold(n_splits=10, random_state=1)
+    cv_results = cross_val_score(model, x_train, y_train, cv=kfold, scoring='accuracy')
+    results.append(cv_results)
+    names.append(name)
+    print('%s: %f (%f)' % (name, cv_results.meaan(), cv_results.std()))
+    
+ # compare our models
+ pyplot.boxplot(results, labels=names)
+ pyplot.title('Algorithm Comparision')
+ pyplot.show()
+
+# make predictions on svm
+model = SVC(gamma='auto')
+model.fit(x_train)
+predictions = model.predict(x_validation)
+
+# evaluate our predictions
+print(accuracy_score(y_validation, predictions))
+print(confusion_matrix(y_validation, predctions))
+print(classification_report(y_validation, predction))
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
