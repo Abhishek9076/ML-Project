@@ -91,25 +91,3 @@ predictions = model.predict(x_validation)
 print(accuracy_score(y_validation, predictions))
 print(confusion_matrix(y_validation, predctions))
 print(classification_report(y_validation, predction))
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
